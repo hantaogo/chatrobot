@@ -49,13 +49,13 @@ class ChatRobotRequestHandler(BaseRequestHandler):
                     break
 
                 params = str.split(data.strip(), ":")
-                if len(params) != 2:
+                if len(params) != 3:
                     continue
                 
-                # print "request:", params[1]
-                res = self.bot.respond(params[1])
-                # print "response:", res
-                self.request.sendall(params[0] + ":" + res)
+                # print u"request: %s:%s" % (params[0].decode("utf8").encode("gbk"), params[1].decode("utf8").encode("gbk"))
+                res = self.bot.respond(params[2])
+                # print u"response: %s" % res.decode("utf8").encode("gbk")
+                self.request.sendall(params[0] + ":" + params[1] + ":" + res)
 
             except:
                 traceback.print_exc()
